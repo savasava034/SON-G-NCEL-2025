@@ -115,7 +115,7 @@ def create_response(status: str, data: Any = None, message: str = None) -> Dict:
 
 def sanitize_query(query: str) -> str:
     """
-    Sanitize user query input
+    Sanitize user query input while preserving Arabic text
     
     Args:
         query: User query string
@@ -126,8 +126,9 @@ def sanitize_query(query: str) -> str:
     # Remove excessive whitespace
     query = ' '.join(query.split())
     
-    # Remove potentially dangerous characters
-    dangerous_chars = ['<', '>', '&', '"', "'", ';', '--', '/*', '*/']
+    # Only remove potentially dangerous characters that are not part of Arabic text
+    # Allow Arabic characters, Latin letters, numbers, and common punctuation
+    dangerous_chars = ['<', '>', '&', '"', ';', '--', '/*', '*/']
     for char in dangerous_chars:
         query = query.replace(char, '')
     

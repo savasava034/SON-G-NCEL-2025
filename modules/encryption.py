@@ -143,6 +143,8 @@ class EncryptionModule:
     def get_key(self) -> str:
         """
         Get encryption key (base64 encoded)
+        WARNING: This method exposes the encryption key. Use with caution.
+        Only use in secure contexts where the key needs to be exported.
         
         Returns:
             str: Base64 encoded key
