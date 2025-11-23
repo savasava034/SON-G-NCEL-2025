@@ -1,0 +1,10 @@
+whoosh
+elasticsearch
+cryptography
+flask
+openai
+feedparser
+pyqt5
+# Frontend için ayrıca (ui klasöründe):
+# npm install ile package.json'daki bağımlılıklar yüklenmeli
+# (örnek: react, axios, bootstrap, vs.)
