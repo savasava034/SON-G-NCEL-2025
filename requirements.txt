@@ -2,6 +2,7 @@ whoosh
 elasticsearch
 cryptography
 flask
+flask-cors
 openai
 feedparser
 pyqt5
