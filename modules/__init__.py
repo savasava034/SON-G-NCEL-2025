@@ -16,9 +16,23 @@ from .priority import add_task, get_next_task, PriorityModule
 # Analysis modules
 from .ebced import calculate as calculate_ebced, analyze_verse as analyze_ebced, EbcedModule
 
-# Integration modules
-from .elasticsearch_integration import search as es_search, ElasticSearchModule
-from .ai_integration import generate_embedding, analyze as ai_analyze, AIModule
+# Integration modules (optional - may not be available without dependencies)
+try:
+    from .elasticsearch_integration import search as es_search, ElasticSearchModule
+    _elasticsearch_available = True
+except ImportError:
+    _elasticsearch_available = False
+    es_search = None
+    ElasticSearchModule = None
+
+try:
+    from .ai_integration import generate_embedding, analyze as ai_analyze, AIModule
+    _ai_available = True
+except ImportError:
+    _ai_available = False
+    generate_embedding = None
+    ai_analyze = None
+    AIModule = None
 
 __all__ = [
     # Core modules
@@ -43,7 +57,7 @@ __all__ = [
     'analyze_ebced',
     'EbcedModule',
     
-    # Integration modules
+    # Integration modules (may be None if not available)
     'es_search',
     'ElasticSearchModule',
     'generate_embedding',
