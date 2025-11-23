@@ -18,13 +18,13 @@ CORS(app)  # Enable CORS for frontend communication
 SAMPLE_VERSES = {
     "1:1": {
         "arabic": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ",
-        "translation": "In the name of Allah, the Most Gracious, the Most Merciful",
+        "translation": "Rahman ve Rahim olan Allah'ın adıyla",
         "surah": 1,
         "verse": 1
     },
     "2:255": {
         "arabic": "ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ",
-        "translation": "Allah - there is no deity except Him, the Ever-Living, the Sustainer",
+        "translation": "Allah ki, O'ndan başka ilah yoktur. Diridir, Kayyum'dur",
         "surah": 2,
         "verse": 255
     }

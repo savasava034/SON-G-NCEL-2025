@@ -13,6 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [apiStatus, setApiStatus] = useState('checking');
+  const [successMessage, setSuccessMessage] = useState(null);
 
   // Check API health on mount
   useEffect(() => {
@@ -88,6 +89,7 @@ function App() {
 
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
 
     try {
       const response = await axios.post(`${API_URL}/api/analyze`, {
@@ -95,7 +97,7 @@ function App() {
         modules: selectedModules
       });
       
-      alert('Analiz tamamlandı! Konsolu kontrol edin.');
+      setSuccessMessage('Analiz tamamlandı! Sonuçlar konsola yazdırıldı.');
       console.log('Analysis results:', response.data);
     } catch (err) {
       setError('Analiz sırasında bir hata oluştu: ' + err.message);
@@ -197,6 +199,17 @@ function App() {
             <Col md={{ span: 8, offset: 2 }}>
               <Alert variant="danger" onClose={() => setError(null)} dismissible>
                 {error}
+              </Alert>
+            </Col>
+          </Row>
+        )}
+
+        {/* Success Alert */}
+        {successMessage && (
+          <Row className="mb-4">
+            <Col md={{ span: 8, offset: 2 }}>
+              <Alert variant="success" onClose={() => setSuccessMessage(null)} dismissible>
+                {successMessage}
               </Alert>
             </Col>
           </Row>
