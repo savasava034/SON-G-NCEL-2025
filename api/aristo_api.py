@@ -36,12 +36,12 @@ def home():
     return jsonify({
         "name": "ARISTO Kuran Keşif Motoru API",
         "version": "1.0.0",
-        "description": "Backend API for Quran discovery engine",
+        "description": "Kuran keşif motoru için backend API",
         "endpoints": {
-            "/api/search": "POST - Search Quran text",
-            "/api/verse/<surah>/<verse>": "GET - Get specific verse",
-            "/api/modules": "GET - List available modules",
-            "/api/analyze": "POST - Analyze verse with modules"
+            "/api/search": "POST - Kuran metninde arama",
+            "/api/verse/<surah>/<verse>": "GET - Belirli bir ayet getir",
+            "/api/modules": "GET - Mevcut modülleri listele",
+            "/api/analyze": "POST - Ayet analizini yap"
         }
     })
 
@@ -52,7 +52,7 @@ def search():
     query = data.get('query', '')
     
     if not query:
-        return jsonify({"error": "Query parameter is required"}), 400
+        return jsonify({"error": "Sorgu parametresi gereklidir"}), 400
     
     # Demo: Return sample results
     results = []
@@ -81,18 +81,18 @@ def get_verse(surah, verse):
             **SAMPLE_VERSES[verse_id]
         })
     
-    return jsonify({"error": "Verse not found"}), 404
+    return jsonify({"error": "Ayet bulunamadı"}), 404
 
 @app.route('/api/modules', methods=['GET'])
 def list_modules():
     """List available analysis modules"""
     modules = [
-        {"id": "fulltext", "name": "Tam Metin Arama", "description": "Full-text search in Quran"},
-        {"id": "ebced", "name": "Ebced Analizi", "description": "Abjad numerical analysis"},
-        {"id": "cifr", "name": "Cifr Hesabı", "description": "Cipher calculations"},
-        {"id": "root", "name": "Kök Analizi", "description": "Arabic root word analysis"},
-        {"id": "semantic", "name": "Semantik Analiz", "description": "Semantic relationships"},
-        {"id": "thematic", "name": "Tematik Bağlantılar", "description": "Thematic connections"}
+        {"id": "fulltext", "name": "Tam Metin Arama", "description": "Kuran'da tam metin araması"},
+        {"id": "ebced", "name": "Ebced Analizi", "description": "Ebced sayısal analizi"},
+        {"id": "cifr", "name": "Cifr Hesabı", "description": "Cifr hesaplamaları"},
+        {"id": "root", "name": "Kök Analizi", "description": "Arapça kök kelime analizi"},
+        {"id": "semantic", "name": "Semantik Analiz", "description": "Anlamsal ilişkiler"},
+        {"id": "thematic", "name": "Tematik Bağlantılar", "description": "Tematik bağlantılar"}
     ]
     
     return jsonify({
@@ -108,7 +108,7 @@ def analyze():
     modules = data.get('modules', [])
     
     if not verse_id:
-        return jsonify({"error": "verse_id parameter is required"}), 400
+        return jsonify({"error": "verse_id parametresi gereklidir"}), 400
     
     # Demo analysis results
     results = {
@@ -127,7 +127,7 @@ def analyze():
         elif module == "ebced":
             results["analysis"]["ebced"] = {
                 "value": 786,
-                "significance": "This number has special significance"
+                "significance": "Bu sayı özel bir öneme sahiptir"
             }
         elif module == "root":
             results["analysis"]["root"] = {
@@ -140,14 +140,14 @@ def analyze():
 @app.route('/api/health', methods=['GET'])
 def health():
     """Health check endpoint"""
-    return jsonify({"status": "healthy", "service": "aristo-api"})
+    return jsonify({"status": "sağlıklı", "service": "aristo-api"})
 
 if __name__ == '__main__':
     # Run the Flask app
     port = int(os.environ.get('PORT', 5000))
     debug = os.environ.get('DEBUG', 'False').lower() == 'true'
     
-    print(f"Starting ARISTO API on port {port}...")
-    print(f"Debug mode: {debug}")
+    print(f"ARISTO API {port} portunda başlatılıyor...")
+    print(f"Debug modu: {debug}")
     
     app.run(host='0.0.0.0', port=port, debug=debug)

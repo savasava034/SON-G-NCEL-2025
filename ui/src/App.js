@@ -24,12 +24,12 @@ function App() {
   const checkApiHealth = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/health`);
-      if (response.data.status === 'healthy') {
+      if (response.data.status === 'sağlıklı') {
         setApiStatus('connected');
       }
     } catch (err) {
       setApiStatus('disconnected');
-      console.error('API health check failed:', err);
+      console.error('API sağlık kontrolü başarısız:', err);
     }
   };
 
@@ -38,7 +38,7 @@ function App() {
       const response = await axios.get(`${API_URL}/api/modules`);
       setModules(response.data.modules || []);
     } catch (err) {
-      console.error('Failed to load modules:', err);
+      console.error('Modüller yüklenemedi:', err);
     }
   };
 
@@ -65,7 +65,7 @@ function App() {
       }
     } catch (err) {
       setError('Arama sırasında bir hata oluştu: ' + err.message);
-      console.error('Search error:', err);
+      console.error('Arama hatası:', err);
     } finally {
       setLoading(false);
     }
@@ -98,10 +98,10 @@ function App() {
       });
       
       setSuccessMessage('Analiz tamamlandı! Sonuçlar konsola yazdırıldı.');
-      console.log('Analysis results:', response.data);
+      console.log('Analiz sonuçları:', response.data);
     } catch (err) {
       setError('Analiz sırasında bir hata oluştu: ' + err.message);
-      console.error('Analysis error:', err);
+      console.error('Analiz hatası:', err);
     } finally {
       setLoading(false);
     }
