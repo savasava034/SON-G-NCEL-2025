@@ -1,0 +1,9 @@
+{
+  "whiteList": [
+    "menu.marktext.label",
+    "preferences.general.misc.userInterfaceLanguage.options.tr",
+    "menu.file.exportHtml",
+    "menu.file.exportPdf",
+    "preferences.categories.markdown"
+  ]
+}
